@@ -1,41 +1,39 @@
+# Prints a right - angled triangle of asterisks, 10 rows high.
+
 main:
 	# i in $t0
 	# j in $t1
 
-loop_row_init:
-	li	$t0, 1
+row_loop_init:
+	li	$t0, 1			# int i = 1
 
-loop_row_cond:
-	bgt	$t0, 10, loop_row_end
+row_loop_cond:
+	bgt	$t0, 10, row_loop_end	# while i <= 10
 
-loop_row_body:
+row_loop_body:
+col_loop_init:
+	li	$t1, 0			# int j = 0
 
-loop_col_init:
-	li	$t1, 0
+col_loop_cond:
+	bge	$t1, $t0, col_loop_end	# while j < i
 
-loop_col_cond:
-	bge	$t1, $t0, loop_col_end
-
-loop_col_body:
-	li	$a0, '*'
-	li	$v0, 11
+col_loop_body:
+	li	$a0, '*'		# printf("*")
+	li	$v0, 11			# mode 11: print_char
 	syscall
 
-loop_col_incr:
-	add	$t1, $t1, 1
-	b	loop_col_cond
+col_loop_step:
+	add	$t1, $t1, 1		# j += 1
+	b	col_loop_cond		# go to top of loop
 
-loop_col_end:
-
-	li	$a0, '\n'
-	li	$v0, 11
+col_loop_end:
+	li	$a0, '\n'		# printf("\n")
+	li	$v0, 11			# mode 11: print_char
 	syscall
 
-loop_row_incr:
-	add	$t0, $t0, 1
-	b	loop_row_cond
+row_loop_step:
+	add	$t0, $t0, 1		# i += 1
+	b	row_loop_cond		# go to top of loop
 
-loop_row_end:
-
-	li	$v0, 0
-	jr	$ra
+row_loop_end:
+	jr	$ra			# return

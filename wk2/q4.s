@@ -3,25 +3,24 @@
 main:
 	# x in $t0
 
-main_loop_init:
-	li	$t0, 24
+while_init:
+	li	$t0, 24			# int x = 24
 
-main_loop_cond:
-	bge	$t0, 42, main_loop_end
+while_cond:
+	bge	$t0, 42, while_end	# while (x < 42)
 
-main_loop_body:
-	move	$a0, $t0
-	li	$v0, 1
+while_body:
+	move	$a0, $t0		# printf("%d", x)
+	li	$v0, 1			# mode 1: print_int
 	syscall
 
-	li	$a0, '\n'
-	li	$v0, 11
+	li	$a0, '\n'		# printf("\n")
+	li	$v0, 11			# mode 11: print_char
 	syscall
 
-main_loop_incr:
-	add	$t0, $t0, 3
-	b	main_loop_cond
+while_step:
+	add	$t0, $t0, 3		# x += 3
+	b	 while_cond		# go back to start of loop
 
-main_loop_end:
-
-	jr	$ra
+while_end:
+	jr	$ra			# returns

@@ -7,7 +7,6 @@ class: invert
 Week 2 Tute
 
 (We'll start at 5 past :D)
-(maybe 10 past if people are real late)
 
 ---
 
