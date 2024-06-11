@@ -6,12 +6,10 @@ class: invert
 # Managing Mips Memory!
 Week 3 Tute
 
-We'll start at 15 past :D
-
 ---
 
 # Assignment 1
- - It is due pretty soon! (Friday Week 5, 6pm)
+ - It is due pretty soon! (Friday Week 5)
  - Assignment content includes functions, which are in the Week 4 labs
  - Start early - you don't *need* to learn functions to dive in and start translating
 
